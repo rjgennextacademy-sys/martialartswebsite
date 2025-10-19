@@ -1,0 +1,732 @@
+/* Color Palette Variables */
+:root {
+    --color-primary: #C1121F; /* Crimson Red (Courage, Leadership) */
+    --color-secondary: #222222; /* Charcoal (Stability, Boldness) */
+    --color-accent: #FFD700; /* Gold (Excellence, Championship) */
+    --color-background: #F9F9F9; /* Off-White (Clean base) */
+    --color-text: #333333; /* Dark Text */
+    --color-light-text: #E0E0E0; /* Light Text for dark backgrounds */
+    --color-dark-bg: #1A1A1A; /* Darker background for professional feel */
+}
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-background); 
+}
+
+/* ---------------------------------------------------- */
+/* --- UNIVERSAL RESPONSIVE IMAGE FIX --- */
+/* ---------------------------------------------------- */
+img {
+    max-width: 100%;
+    height: auto; /* Ensures aspect ratio is maintained */
+    display: block;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Responsive Font Sizing */
+h1 { font-size: clamp(2.5em, 5vw, 4.5em); color: var(--color-text); }
+h2 { font-size: clamp(1.8em, 4vw, 2.5em); text-align: center; margin-bottom: 60px; color: var(--color-secondary); } 
+h3 { font-size: 1.8em; }
+
+/* ---------------------------------------------------- */
+/* --- Advanced Scroll Animation Styles (Default) --- */
+/* ---------------------------------------------------- */
+.animate-on-scroll {
+    opacity: 0;
+    --animation-delay: 0ms; /* Custom property set by JS */
+    transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-delay: var(--animation-delay); 
+}
+
+.fade-up { transform: translateY(50px); }
+.fade-left { transform: translateX(-50px); }
+.fade-right { transform: translateX(50px); }
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0) translateX(0); 
+}
+
+/* NEW Instructor Animations */
+
+/* 1. Master Card: Pop-In Animation */
+.pop-in.animate-on-scroll {
+    transform: scale(0.8);
+    transition: opacity 1s, transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Added bounce effect */
+}
+.pop-in.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* 2. Chief Cards: Slow Slide Up */
+.slide-up-slow.animate-on-scroll {
+    transform: translateY(80px);
+    transition: opacity 1.2s, transform 1.2s ease-out; 
+}
+.slide-up-slow.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ---------------------------------------------------- */
+/* --- Header & Navigation --- */
+/* ---------------------------------------------------- */
+.main-header {
+    background-color: #faf8f8;
+    border-bottom: 3px solid var(--color-primary); 
+    padding: 15px 0; 
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    transition: padding 0.3s ease-out; 
+}
+.main-header.shrink {
+    padding: 8px 0; 
+}
+.main-header .container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--color-primary); 
+}
+.desktop-nav { margin-left: auto; display: flex; align-items: center; }
+.desktop-nav a, .left-cta-button { text-decoration: none; color: var(--color-text); margin-left: 20px; transition: color 0.3s, background-color 0.3s, transform 0.3s; }
+.desktop-nav a:hover { color: var(--color-primary); }
+
+.left-cta-button, .cta-button {
+    background-color: var(--color-accent); 
+    color: var(--color-secondary) !important;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.cta-button {
+    background-color: var(--color-primary); 
+    color: white !important;
+    margin-left: 30px;
+}
+.cta-button:hover { background-color: #a40e1b; transform: translateY(-2px); }
+
+
+/* ---------------------------------------------------- */
+/* --- Hero Section --- */
+/* ---------------------------------------------------- */
+.hero-section {
+    position: relative;
+    height: 80vh;
+    min-height: 500px;
+    overflow: hidden;
+}
+.hero-bg-image {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;
+    transition: transform 0.1s ease-out; /* For parallax */
+}
+.hero-content {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2;
+    background: linear-gradient(135deg, rgba(44, 43, 43, 0.6), rgba(193, 18, 31, 0.2)); /* Subtle gradient overlay for depth */
+    display: flex; align-items: center; justify-content: center; text-align: center;
+}
+.hero-content h1 { color: white; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); }
+
+.btn {
+    padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold;
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s; display: inline-block;
+}
+.btn-primary { background-color: var(--color-primary); color: white; border: 2px solid var(--color-primary); }
+.btn-primary:hover { background-color: #a40e1b; box-shadow: 0 0 20px rgba(193, 18, 31, 0.6); } /* Glow effect */
+.btn-secondary { background-color: transparent; color: white; border: 2px solid white; margin-left: 20px; }
+.btn-secondary:hover { background-color: rgba(255, 255, 255, 0.1); box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); } /* Subtle glow */
+.btn:hover { transform: translateY(-3px); }
+
+.features-bar {
+    display: flex; justify-content: space-around; padding: 20px; margin-top: 50px;
+    background-color: rgba(34, 34, 34, 0.85);
+    border-radius: 10px; backdrop-filter: blur(3px);
+    border: 1px solid var(--color-primary);
+}
+.features-bar div { font-size: 1.1em; display: flex; align-items: center; color: white; gap: 10px; }
+.features-bar div i { animation: float 3s ease-in-out infinite; } /* Floating animation for icons */
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+
+/* ---------------------------------------------------- */
+/* --- About & Programs Sections --- */
+/* ---------------------------------------------------- */
+section { padding: 80px 0; background-color: var(--color-background); }
+
+.about-section .container, .programs-section .program-item {
+    display: flex; gap: 60px; align-items: center; text-align: left;
+}
+.about-image, .program-image { flex: 1; min-height: 350px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); overflow: hidden; }
+.about-content, .program-text { flex: 1; }
+.content-img { width: 100%; height: 100%; object-fit: cover; } 
+.programs-section .program-item { margin-bottom: 80px; }
+.program-item.reverse-layout { flex-direction: row-reverse; }
+
+
+/* ---------------------------------------------------- */
+/* --- Instructors Section --- */
+/* ---------------------------------------------------- */
+.instructors-section {
+    background-color: var(--color-dark-bg); 
+    color: var(--color-light-text);
+}
+.instructors-section h2 { color: white; }
+
+/* MASTER CARD STYLES */
+.master-card {
+    display: flex;
+    margin: 40px auto 80px;
+    padding: 30px 40px;
+    background: var(--color-secondary); 
+    border-radius: 12px;
+    border: 3px solid var(--color-primary); 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); 
+    align-items: flex-start; 
+    gap: 50px;
+}
+.master-card .photo {
+    width: 200px;
+    height: 200px;
+    border: 6px solid var(--color-accent); 
+    border-radius: 8px; /* Square image with rounded corners */
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.master-card .details { text-align: left; flex-grow: 1; }
+.master-card h3 { 
+    color: var(--color-primary); 
+    font-size: 2.2em;
+    margin-bottom: 5px;
+}
+.title-tag {
+    font-size: 0.8em; font-weight: normal; background-color: var(--color-primary); color: white;
+    padding: 3px 10px; border-radius: 5px; margin-left: 10px; vertical-align: middle; 
+}
+
+/* NEW STYLES FOR MASTER CREDENTIALS (DETAILED) */
+.master-card .basic-creds ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 15px;
+    display: flex; /* Display credentials side-by-side on desktop */
+    flex-wrap: wrap;
+    gap: 15px 30px;
+    margin-bottom: 20px;
+}
+.master-card .basic-creds ul li {
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.master-card .basic-creds ul li i {
+    color: var(--color-accent);
+}
+
+.master-card h4 {
+    color: var(--color-accent); /* Make sub-headings gold/accent */
+    font-size: 1.4em;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #444; /* Subtle separator */
+    padding-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.master-card h4 i {
+    color: var(--color-primary);
+}
+
+.master-card .instructor-sections ul {
+    list-style: disc; /* Use discs for detailed lists */
+    padding-left: 20px;
+    margin-top: 10px;
+    color: var(--color-light-text);
+}
+.master-card .instructor-sections ul li {
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+.master-card .instructor-sections ul li strong {
+    color: white;
+}
+
+/* Coaching Grid Styling */
+.coach-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns for coaching experience */
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.coach-item {
+    background-color: #333;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 3px solid var(--color-accent);
+}
+.coach-item h5 {
+    color: white;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.coach-item p {
+    font-size: 0.9em;
+    margin: 0;
+    line-height: 1.4;
+    color: #ccc;
+}
+.coach-item p strong { color: var(--color-primary); }
+
+
+/* CHIEF INSTRUCTORS STYLES */
+.chief-instructors-title { 
+    margin-top: 80px; 
+    color: var(--color-light-text);
+    text-align: center;
+    border-bottom: 2px solid #333;
+    padding-bottom: 15px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.chief-instructors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+    gap: 50px;
+    margin-top: 40px;
+}
+.instructor-card {
+    background-color: #3a3a3a;
+    padding: 30px; 
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, background-color 0.3s; 
+    border-top: 4px solid var(--color-primary); 
+}
+
+.instructor-card:not(.master-card):hover {
+    background-color: #555555;
+    transform: translateY(-8px); 
+    box-shadow: 0 15px 40px rgba(193, 18, 31, 0.5); 
+}
+.instructor-card h3 { color: var(--color-light-text); font-size: 1.5em; margin-bottom: 10px; }
+.instructor-card .photo {
+    width: 150px;
+    height: 200px;
+    border-radius: 15px; /* Square image with rounded corners */
+    overflow: hidden;
+    margin-bottom: 30px;
+    border: 3px solid var(--color-accent);
+}
+.profile-img { width: 100%; height: 100%; object-fit: cover; } 
+.instructor-card ul { list-style: none; padding-left: 0; margin-top: 15px; text-align: center;}
+.instructor-card ul li { 
+    margin-bottom: 8px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-start; 
+    gap: 10px; 
+    font-size: 1em;
+}
+.instructor-card ul li i {
+    color: var(--color-primary); 
+    font-size: 1.1em;
+}
+
+
+/* ---------------------------------------------------- */
+/* --- Gallery Section & Lightbox --- */
+/* ---------------------------------------------------- */
+.gallery-section { padding: 100px 0; }
+.gallery-subtitle { text-align: left; color: var(--color-secondary); margin-top: 60px; margin-bottom: 30px; }
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+}
+.gallery-item {
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease-out;
+    background-color: #f0f0f0; /* Background color to fill space when image doesn't cover */
+}
+.gallery-item:hover {
+    box-shadow: 0 5px 15px rgba(193, 18, 31, 0.7);
+}
+.gallery-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain; /* Changed from cover to contain to show full image without cropping */
+    display: block;
+    transition: transform 0.35s ease-out, filter 0.3s ease-out;
+    filter: grayscale(80%);
+}
+.gallery-item:hover .gallery-photo {
+    transform: scale(1.05); 
+    filter: grayscale(0%); 
+}
+
+/* GALLERY CAPTION STYLES (Kept these minimal for current purpose) */
+.gallery-caption {
+    background-color: var(--color-secondary);
+    color: var(--color-light-text);
+    padding: 10px 8px;
+    text-align: center;
+    font-size: 0.9em;
+    height: 70px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top: 3px solid var(--color-primary);
+    flex-shrink: 0;
+}
+.gallery-caption strong {
+    font-size: 1em;
+    color: var(--color-accent); 
+    line-height: 1.2;
+}
+.gallery-caption p {
+    font-size: 0.8em;
+    margin: 0;
+    line-height: 1.2;
+}
+
+
+/* ---------------------------------------------------- */
+/* --- Contact Section & Footer --- */
+/* ---------------------------------------------------- */
+.contact-section { padding: 80px 0; background-color: var(--color-background); }
+.contact-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    text-align: center;
+}
+.detail-item {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+.detail-item i {
+    font-size: 2em;
+    color: var(--color-primary);
+    margin-bottom: 15px;
+}
+.detail-item a.map-link {
+    display: block; margin-top: 10px; font-size: 0.9em; color: var(--color-primary);
+    font-weight: bold; text-decoration: underline;
+}
+.query-heading { text-align: center; margin-top: 60px; }
+.query-contacts { text-align: center; margin-bottom: 40px; }
+.query-contacts p a { color: var(--color-primary); text-decoration: none; font-weight: bold;}
+
+.main-footer {
+    background-color: var(--color-secondary); 
+    color: var(--color-light-text);
+    padding: 20px 0;
+}
+.contact-bar {
+    display: flex; justify-content: space-around; padding-bottom: 15px; border-bottom: 1px solid #444;
+}
+.contact-bar a, .contact-bar span { font-size: 1em; text-decoration: none; color: var(--color-light-text); display: flex; align-items: center; gap: 8px; }
+.copyright { text-align: center; padding-top: 15px; font-size: 0.9em; }
+
+
+/* ---------------------------------------------------- */
+/* --- Modal (Admission Form) Styles --- */
+/* ---------------------------------------------------- */
+
+.modal {
+    /* Base Modal Styles */
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    padding: 20px;
+}
+
+.modal-content {
+    background-color: var(--color-background);
+    margin: auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    max-width: 500px;
+    width: 95%;
+    position: relative;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-content h2 {
+    color: var(--color-primary);
+    text-align: center;
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.modal-content p {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1em;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+/* Form Styling */
+.admission-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.admission-form label {
+    font-weight: bold;
+    color: var(--color-secondary);
+    margin-bottom: -5px;
+}
+
+.admission-form input[type="text"],
+.admission-form input[type="number"],
+.admission-form input[type="tel"],
+.admission-form input[type="email"],
+.admission-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.admission-form input:focus,
+.admission-form select:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 5px rgba(193, 18, 31, 0.5);
+    outline: none;
+}
+
+.form-submit-btn {
+    margin-top: 20px;
+    width: 100%;
+    padding: 15px !important; 
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+/* Lightbox specific styles (used for gallery images) */
+.lightbox .modal-content {
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#lightbox-image {
+    max-width: 100%;
+    max-height: 80vh; 
+    display: block;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
+.lightbox-close-button {
+    color: white;
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    z-index: 2001;
+    text-shadow: 0 0 5px black;
+}
+#lightbox-caption {
+    color: white;
+    font-size: 1.2em;
+    margin-top: 10px;
+    text-align: center;
+    background: rgba(0,0,0,0.5);
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+
+/* ---------------------------------------------------- */
+/* --- Mobile Responsiveness (Max-width 768px) --- */
+/* ---------------------------------------------------- */
+@media (min-width: 769px) {
+    .mobile-menu-toggle { display: none; }
+    .mobile-nav { display: none; }
+}
+
+@media (max-width: 768px) {
+    
+    h2 { margin-bottom: 30px; }
+    
+    /* Hide desktop elements on mobile */
+    .desktop-only, .desktop-nav { display: none !important; }
+    
+    /* Column Stacking for major containers */
+    .main-header .container,
+    .about-section .container, 
+    .programs-section .program-item,
+    .program-item.reverse-layout,
+    .chief-instructors-grid,
+    .contact-bar,
+    .contact-details-grid {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+
+    /* Master Card Mobile Adjustments */
+    .master-card {
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px; /* Reduced padding */
+    }
+    .master-card .details { text-align: left; }
+
+    /* Basic Credentials List */
+    .master-card .basic-creds ul {
+        flex-direction: column; /* Stack credentials vertically */
+        gap: 10px;
+        text-align: left;
+        padding-left: 0;
+    }
+    .master-card .basic-creds ul li {
+        justify-content: flex-start; /* Align text left */
+    }
+    .master-card .instructor-sections ul {
+         padding-left: 20px; /* Ensure detailed lists have indents */
+    }
+
+    .master-card .photo { margin: 0 auto 20px; }
+    
+    /* Coaching Grid */
+    .coach-grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+    }
+
+    .about-image, .program-image { order: -1; } 
+    .about-content, .program-text { order: 0; }
+
+    /* Hero adjustments */
+    .cta-group { display: flex; flex-direction: column; align-items: center; }
+    .btn-secondary { margin-left: 0; margin-top: 15px; }
+    .features-bar { flex-direction: column; align-items: center; gap: 15px; }
+    
+    /* Chief Instructor Card Adjustments (Default column layout is fine) */
+    .instructor-card .photo { margin-bottom: 15px; }
+    .instructor-card ul { text-align: center; }
+    .instructor-card ul li { justify-content: center; } 
+
+    /* Mobile Menu Toggle Button */
+    .mobile-menu-toggle {
+        background: none; border: none; font-size: 1.8em; color: var(--color-primary);
+        margin-left: auto; cursor: pointer; padding: 5px; display: block; 
+    }
+
+    /* Mobile Navigation Menu */
+    .mobile-nav {
+        position: absolute; top: 100%; left: 0; width: 100%; background-color: #fff;
+        border-top: 1px solid #eee; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        display: none; 
+        flex-direction: column; text-align: center; padding: 0; z-index: 999;
+        transform: translateY(-10px); opacity: 0; 
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    }
+
+    .mobile-nav.is-open {
+        display: flex; 
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .mobile-nav a {
+        padding: 15px 20px; border-bottom: 1px solid #f0f0f0; display: block; font-size: 1.1em;
+        color: var(--color-text); text-decoration: none;
+    }
+
+    .mobile-cta-button {
+        background-color: var(--color-primary); color: white !important;
+        padding: 15px; margin: 10px 0 20px; border-radius: 0;
+    }
+}
